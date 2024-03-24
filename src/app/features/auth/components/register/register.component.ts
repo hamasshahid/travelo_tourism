@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { cuteToast } from "src/assets/alerts/cute-alert";
 
@@ -9,6 +9,8 @@ import { cuteToast } from "src/assets/alerts/cute-alert";
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
+  hidePassword = true;
+  hideConfirmPassword = true;
 
   registrationForm: FormGroup;
   constructor(
@@ -21,7 +23,7 @@ export class RegisterComponent {
       lName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       pass: ['', [Validators.required, Validators.minLength(8)]],
-      confirmPass: ['', [Validators.required, Validators.minLength(8)]],
+      confirmPass: ['', [Validators.required, this.passwordMatchValidator]],
       terms: [false, Validators.requiredTrue]
     });
   }
@@ -61,4 +63,10 @@ export class RegisterComponent {
       cuteToast({ type: 'error', message: error, timer: 5000, });
       });
   }
+
+  passwordMatchValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+    const password = control.parent?.get('pass');
+    const confirmPassword = control;  
+    return password && confirmPassword && password.value === confirmPassword.value ? null : { 'passwordMismatch': true };
+  };
 }

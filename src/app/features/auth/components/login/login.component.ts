@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -6,5 +7,21 @@ import { Component } from '@angular/core';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  hidePassword: boolean = true;
+  hidePassword = true;
+  loginForm: FormGroup;
+
+  constructor(
+    private formBuilder: FormBuilder,
+  ){
+    this.loginForm = this.formBuilder.group({
+      email: '',
+      pass: '',
+      isRememberMe: false
+    });
+  }
+
+  login(){
+    const user = this.loginForm.value;
+    console.log(user);
+  }
 }

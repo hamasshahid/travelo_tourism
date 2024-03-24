@@ -6,71 +6,120 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="d-flex justify-content-center">
-                            <img id="profilePicture" [src]="registrationForm.get('profileImg')?.value || '/assets/imgs/blank-profile.png'">
+                            <img id="profilePicture"
+                                [src]="registrationForm.get('profileImg')?.value || '/assets/imgs/blank-profile.png'">
                         </div>
                         <div class="input-group mb-3 justify-content-center">
                             <label for="profilePictureUpload" class="upload-profile-button">Upload Profile</label>
-                            <input type="file" id="profilePictureUpload" formControlName="profileImg" accept=".png,.jpg,.jpeg,.gif,.tif"
-                            class="form-control" style="display: none;"
-                            (change)="onFileChange($event)"/>
+                            <input type="file" id="profilePictureUpload" formControlName="profileImg"
+                                accept=".png,.jpg,.jpeg,.gif,.tif" class="form-control" style="display: none;"
+                                (change)="onFileChange($event)" />
                         </div>
                     </div>
                     <div class="col-lg-8">
-                        <div class="row user-name">
+                        <div class="row user-name mb-3">
                             <div class="col-md-6">
                                 <div class="input-group">
-                                    <input class="form-control register-page-btn"
-                                        placeholder="First Name" formControlName="fName" />
+                                    <input class="form-control register-page-btn" placeholder="First Name"
+                                        formControlName="fName"
+                                        [class.invalid-input]="getRegistrationControl('fName')?.invalid && getRegistrationControl('fName')?.touched"/>
                                     <div class="input-group-append">
                                         <div class="input-group-text">
                                             <span class="fas fa-user"></span>
                                         </div>
                                     </div>
                                 </div>
-                                <div *ngIf="getRegistrationControl('fName')?.invalid && getRegistrationControl('fName')?.touched" class="text-danger ms-2">
-                                    <p *ngIf="getRegistrationControl('fName')?.errors?.['required']">
-                                    First Name is Required
-                                    </p>
+                                <div *ngIf="getRegistrationControl('fName')?.invalid && getRegistrationControl('fName')?.touched"
+                                    class="text-danger ms-2">
+                                    <span *ngIf="getRegistrationControl('fName')?.errors?.['required']">
+                                        First Name is Required
+                                    </span>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="input-group mb-3">
-                                    <input class="form-control register-page-btn"
-                                        placeholder="Last Name" formControlName="lName" />
+                                <div class="input-group">
+                                    <input class="form-control register-page-btn" placeholder="Last Name"
+                                        formControlName="lName" 
+                                        [class.invalid-input]="getRegistrationControl('lName')?.invalid && getRegistrationControl('lName')?.touched"/>
                                     <div class="input-group-append">
                                         <div class="input-group-text">
                                             <span class="fas fa-user"></span>
                                         </div>
                                     </div>
+                                </div>
+                                <div *ngIf="getRegistrationControl('lName')?.invalid && getRegistrationControl('lName')?.touched"
+                                    class="text-danger ms-2">
+                                    <span *ngIf="getRegistrationControl('lName')?.errors?.['required']">
+                                        Last Name is Required
+                                    </span>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="input-group mb-3">
-                            <input class="form-control register-page-btn"
-                                placeholder="Email" formControlName="email" />
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-envelope"></span>
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <input class="form-control register-page-btn" placeholder="Email"
+                                    formControlName="email" 
+                                    [class.invalid-input]="getRegistrationControl('email')?.invalid && getRegistrationControl('email')?.touched"/>
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-envelope"></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input class="form-control register-page-btn"
-                                placeholder="Password" formControlName="pass"/>
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-lock"></span>
-                                </div>
+                            <div *ngIf="getRegistrationControl('email')?.invalid && getRegistrationControl('email')?.touched"
+                                class="text-danger ms-2">
+                                <span *ngIf="getRegistrationControl('email')?.errors?.['required']">
+                                    Email is Required
+                                </span>
+                                <span *ngIf="getRegistrationControl('email')?.errors?.['email']">
+                                    Email is Invalid
+                                </span>
                             </div>
                         </div>
-                        <div class="input-group mb-3">
-                            <input class="form-control register-page-btn"
-                                placeholder="Re-Enter Password" formControlName="confirmPass" />
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-lock"></span>
+
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <input [type]="hidePassword ? 'password' : 'text'"  class="form-control register-page-btn pe-5" placeholder="Password"
+                                    formControlName="pass" 
+                                    [class.invalid-input]="getRegistrationControl('pass')?.invalid && getRegistrationControl('pass')?.touched"/>
+                                    <span class="fa fa-fw field-icon" [ngClass]="hidePassword ? 'fa-eye-slash' : 'fa-eye' " (click)="hidePassword = !hidePassword"></span>
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-lock"></span>
+                                    </div>
                                 </div>
+                            </div>
+                            <div *ngIf="getRegistrationControl('pass')?.invalid && getRegistrationControl('pass')?.touched"
+                                class="text-danger ms-2">
+                                <span *ngIf="getRegistrationControl('pass')?.errors?.['required']">
+                                    Password is Required
+                                </span>
+                                <span *ngIf="getRegistrationControl('pass')?.errors?.['minlength']">
+                                    Password must be at least 8 characters
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <input [type]="hideConfirmPassword ? 'password' : 'text'"  class="form-control register-page-btn pe-5" placeholder="Re-Enter Password"
+                                    formControlName="confirmPass" 
+                                    [class.invalid-input]="getRegistrationControl('confirmPass')?.invalid && getRegistrationControl('confirmPass')?.touched"/>
+                                    <span class="fa fa-fw field-icon" [ngClass]="hideConfirmPassword ? 'fa-eye-slash' : 'fa-eye' " (click)="hideConfirmPassword = !hideConfirmPassword"></span>
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-lock"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="getRegistrationControl('confirmPass')?.invalid && getRegistrationControl('confirmPass')?.touched"
+                                class="text-danger ms-2">
+                                <span *ngIf="getRegistrationControl('confirmPass')?.errors?.['required']">
+                                    Confirm Password is Required
+                                </span>
+                                <span *ngIf="getRegistrationControl('confirmPass')?.errors?.['passwordMismatch']">
+                                    Password must match
+                                </span>
                             </div>
                         </div>
                         <div class="input-group mb-3 ms-2">
@@ -82,7 +131,8 @@
                             </div>
                         </div>
                         <div class="w-100 d-flex justify-content-center">
-                            <button type="submit" class="btn btn-primary btn-registery" [disabled]="registrationForm.invalid">Register</button>
+                            <button type="submit" class="btn btn-primary btn-registery"
+                                [disabled]="registrationForm.invalid">Register</button>
                         </div>
                     </div>
                 </div>
