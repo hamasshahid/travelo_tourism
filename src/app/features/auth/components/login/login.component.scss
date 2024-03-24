@@ -1,0 +1,62 @@
+.bglogin {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    &::before {
+        content: "";
+        background-image: url("/assets/imgs/random-place.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        filter: blur(3px);
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+    }
+}
+.smoke{
+    background-color: RGBA(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    border-radius: 12px;
+}
+.field-icon {
+    float: right;
+    margin-left: -25px;
+    margin-top: -25px;
+    position: relative;
+    z-index: 2;
+}
+.fa-fw {
+    text-align: center;
+    width: 2.25em;
+}
+
+.form-group{
+    margin-bottom: 1.0rem;
+}
+
+.login-page-btn{
+    background-color:transparent;
+    border-radius:1.25rem;
+}
+
+.sign-in-btn{
+    min-width: 10rem;
+}
+
+@media only screen and (max-width: 769px) {
+    .bglogin {
+        height:fit-content;
+    }
+    .smoke {
+        background-color: RGBA(255, 255, 255, 0.8);
+        backdrop-filter: blur(5px);
+        border-radius: 12px;
+        margin-top: 5%;
+        margin-bottom:5%;
+    }
+}

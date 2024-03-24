@@ -1,0 +1,59 @@
+.register-user{
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &::before {
+        content: "";
+        background-image: url("/assets/imgs/register-bg.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        filter: blur(5px);
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+    }
+}
+
+.smoke{
+    background-color: RGBA(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+    border-radius: 12px;
+}
+
+.register-page-btn{
+    background-color:transparent;
+    border-radius:1.25rem;
+    border: 1px solid #adb5bd;
+}
+
+.input-group-text{
+    height: 100%;
+}
+
+.upload-profile-button {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #007bff;
+    border-radius: 5px !important;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#profilePicture{
+    width:150px;
+    height:150px;
+    object-fit:cover;
+    border-radius:50%;
+}
+
+.btn-registery{
+    min-width: 10rem;
+}
