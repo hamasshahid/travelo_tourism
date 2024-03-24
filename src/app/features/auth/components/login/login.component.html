@@ -1,27 +1,27 @@
 <div class="container-fluid bglogin">
-    <div class="row">
-        <div class="offset-xl-1 col-xl-10 offset-lg-1 col-lg-10 offset-md-1 col-md-10">
-            <div class="row">
-                <div class="col-xl-5 col-lg-5 col-md-5">
-                    <div class="smoke" >
-                        <div class="text-center" style="padding-top:10%">
-                            <img src="/assets/imgs/girl-in-jacket.jpg" alt="Girl in a jacket" style="width:50%;" />
-                        </div>
+            <div class="smoke p-5">
+                <div class="d-flex">
+                    <div>
+                            <img class="rounded shadow" src="/assets/imgs/girl-in-jacket.jpg" alt="Girl in a jacket" style="width:12rem" />
+                    </div>
+                    <div>
                         <div class="row">
                             <div class="offset-xl-1 col-xl-10 offset-lg-1 col-lg-10 offset-md-1 col-md-10">
                                 <div class="mt-3 mx-3 mb-3">
                                     <form method="post">
                                         <div class="form-group">
-                                            <input type="text" class="form-control login-page-btn" asp-for="Input.UserName" placeholder="User Name">
+                                            <input type="text" class="form-control login-page-btn"
+                                            placeholder="Email">
                                         </div>
                                         <div class="form-group">
-                                            <input id="password-field" type="password" class="form-control login-page-btn" asp-for="Input.Password"  placeholder="Password">
-                                            <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password" style="color:rgb(3, 3, 3);"></span>
-                                            <div asp-validation-summary="All" class="text-danger"></div>
+                                            <input id="password-field" [type]="hidePassword ? 'password' : 'text'" class="form-control login-page-btn"
+                                                placeholder="Password">
+                                                <span class="fa fa-fw toggle-password field-icon" [ngClass]="hidePassword ? 'fa-eye-slash' : 'fa-eye' " (click)="hidePassword = !hidePassword" style="color:rgb(3, 3, 3); cursor: pointer;"></span>
                                         </div>
-                                        <div class="form-group form-check mt-2">
+                                        <div class="form-group form-check mt-2 ms-2">
                                             <label class="form-check-label">
-                                                <input class="form-check-input" asp-for="Input.RememberMe" type="checkbox" style="margin-top:0.4rem;"> Remember me
+                                                <input class="form-check-input" type="checkbox">
+                                                Remember me
                                             </label>
                                         </div>
                                         <div class="w-100 d-flex justify-content-center">
@@ -32,12 +32,11 @@
                             </div>
                             <div class="mt-3">
                                 <p class="text-center">Don't have an account? <a [routerLink]="['/auth/register']"
-                                        class="primary-color text-decoration-none">Register</a></p>
-                            </div>    
+                                        class="primary-color">Register now</a></p>
+                            </div>
                         </div>
                     </div>
                 </div>
+               
             </div>
-        </div>
-    </div>
 </div>

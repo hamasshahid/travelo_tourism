@@ -32,6 +32,7 @@
             "styles": [
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "node_modules/bootstrap/scss/bootstrap.scss",
+              "src/assets/alerts/style.css",
               "src/styles.scss"
             ],
             "scripts": [

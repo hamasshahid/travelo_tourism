@@ -1,8 +1,9 @@
 .bglogin {
     position: relative;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
+    justify-content: center;
     &::before {
         content: "";
         background-image: url("/assets/imgs/random-place.jpg");
@@ -19,7 +20,7 @@
     }
 }
 .smoke{
-    background-color: RGBA(255, 255, 255, 0.3);
+    background-color: RGBA(255, 255, 255, 0.6);
     backdrop-filter: blur(5px);
     border-radius: 12px;
 }
@@ -42,6 +43,7 @@
 .login-page-btn{
     background-color:transparent;
     border-radius:1.25rem;
+    border: 1px solid #545d65;
 }
 
 .sign-in-btn{

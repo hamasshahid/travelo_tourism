@@ -1,9 +1,10 @@
 .register-user{
     position: relative;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 2rem 0rem;
     &::before {
         content: "";
         background-image: url("/assets/imgs/register-bg.jpg");
@@ -21,7 +22,7 @@
 }
 
 .smoke{
-    background-color: RGBA(255, 255, 255, 0.8);
+    background-color: RGBA(255, 255, 255, 0.6);
     backdrop-filter: blur(5px);
     border-radius: 12px;
 }
@@ -29,7 +30,7 @@
 .register-page-btn{
     background-color:transparent;
     border-radius:1.25rem;
-    border: 1px solid #adb5bd;
+    border: 1px solid #545d65;
 }
 
 .input-group-text{
@@ -56,4 +57,14 @@
 
 .btn-registery{
     min-width: 10rem;
+}
+
+input[type="checkbox"]{
+    cursor: pointer;
+}
+
+@media screen and (max-width: 767px){
+    .user-name{
+        gap: 1rem;
+    }
 }
