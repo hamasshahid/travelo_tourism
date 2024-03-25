@@ -20,7 +20,7 @@
                         <div class="row user-name mb-3">
                             <div class="col-md-6">
                                 <div class="input-group">
-                                    <input class="form-control register-page-btn" placeholder="First Name"
+                                    <input type="text" class="form-control primary-field" placeholder="First Name"
                                         formControlName="fName"
                                         [class.invalid-input]="getRegistrationControl('fName')?.invalid && getRegistrationControl('fName')?.touched"/>
                                     <div class="input-group-append">
@@ -38,7 +38,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="input-group">
-                                    <input class="form-control register-page-btn" placeholder="Last Name"
+                                    <input type="text" class="form-control primary-field" placeholder="Last Name"
                                         formControlName="lName" 
                                         [class.invalid-input]="getRegistrationControl('lName')?.invalid && getRegistrationControl('lName')?.touched"/>
                                     <div class="input-group-append">
@@ -58,7 +58,7 @@
 
                         <div class="mb-3">
                             <div class="input-group">
-                                <input class="form-control register-page-btn" placeholder="Email"
+                                <input type="email" class="form-control primary-field" placeholder="Email"
                                     formControlName="email" 
                                     [class.invalid-input]="getRegistrationControl('email')?.invalid && getRegistrationControl('email')?.touched"/>
                                 <div class="input-group-append">
@@ -80,7 +80,7 @@
 
                         <div class="mb-3">
                             <div class="input-group">
-                                <input [type]="hidePassword ? 'password' : 'text'"  class="form-control register-page-btn pe-5" placeholder="Password"
+                                <input [type]="hidePassword ? 'password' : 'text'"  class="form-control primary-field pe-5" placeholder="Password"
                                     formControlName="pass" 
                                     [class.invalid-input]="getRegistrationControl('pass')?.invalid && getRegistrationControl('pass')?.touched"/>
                                     <span class="fa fa-fw field-icon" [ngClass]="hidePassword ? 'fa-eye-slash' : 'fa-eye' " (click)="hidePassword = !hidePassword"></span>
@@ -102,7 +102,7 @@
                         </div>
                         <div class="mb-3">
                             <div class="input-group">
-                                <input [type]="hideConfirmPassword ? 'password' : 'text'"  class="form-control register-page-btn pe-5" placeholder="Re-Enter Password"
+                                <input [type]="hideConfirmPassword ? 'password' : 'text'"  class="form-control primary-field pe-5" placeholder="Re-Enter Password"
                                     formControlName="confirmPass" 
                                     [class.invalid-input]="getRegistrationControl('confirmPass')?.invalid && getRegistrationControl('confirmPass')?.touched"/>
                                     <span class="fa fa-fw field-icon" [ngClass]="hideConfirmPassword ? 'fa-eye-slash' : 'fa-eye' " (click)="hideConfirmPassword = !hideConfirmPassword"></span>

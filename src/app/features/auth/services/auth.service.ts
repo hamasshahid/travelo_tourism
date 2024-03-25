@@ -1,16 +1,26 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { authAPIs } from 'src/app/endpoints';
+import { LoginUser, RegisterUser, User } from '../authInterfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  userData: BehaviorSubject<User> = new BehaviorSubject<User>({
+    profileImg: '',
+    fName: '',
+    lName: '',
+    email: '',
+  });
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router,
   ) { }
 
-  registerUser(user: any): Promise<any> {
+  registerUser(user: RegisterUser): Promise<any> {
     return new Promise(async (resolve, reject) => {
       const users = await this.getRegisterUsers()
       const isUserExist = users.find((u: any) => u.email === user.email);
@@ -26,14 +36,13 @@ export class AuthService {
     });
   }
 
-  loginUser(user: any): Promise<any> {
+  loginUser(user: LoginUser): Promise<any> {
     return new Promise(async (resolve, reject) => {
       const users = await this.getRegisterUsers()
       const isUserExist = users.find((u: any) => u.email === user.email);
-      if (isUserExist) {
-        if(user?.isRememberMe){
-          localStorage.setItem('user', JSON.stringify(user));
-        }
+      if (isUserExist && isUserExist.pass === user.pass) {
+        this.userData.next(isUserExist);
+        localStorage.setItem('userEmail', JSON.stringify(user.email));
         resolve('User logged in successfully');
         return;
       }else{
@@ -52,4 +61,14 @@ export class AuthService {
     });
   }
 
+  logout(){
+    this.userData.next({
+      profileImg: '',
+      fName: '',
+      lName: '',
+      email: '',
+    });
+    localStorage.removeItem('userEmail');
+    this.router.navigate(['/auth/login']);
+  }
 }

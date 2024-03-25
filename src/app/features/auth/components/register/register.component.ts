@@ -60,7 +60,7 @@ export class RegisterComponent {
           terms: false
         });
       }).catch((error) => {
-      cuteToast({ type: 'error', message: error, timer: 5000, });
+      cuteToast({ type: 'warning', message: error, timer: 5000, });
       });
   }
 

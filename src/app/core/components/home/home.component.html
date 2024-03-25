@@ -1,1 +1,10 @@
-<p>home works!</p>
+<div class="container-fluid home-wrapper">
+    <div class="card" style="width: 18rem;">
+        <img [src]="userData.profileImg || '/assets/imgs/blank-profile.png'" class="card-img-top" alt="Img not found">
+        <div class="card-body">
+            <h5 class="card-title">{{userData.fName}} {{userData.lName}}</h5>
+            <p class="card-text">{{userData.email}}</p>
+        </div>
+    </div>
+    <button class="btn btn-danger" (click)="logout()">Logout</button>
+</div>
