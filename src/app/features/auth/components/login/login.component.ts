@@ -13,7 +13,7 @@ export class LoginComponent {
   attempts: number = 0;
   hidePassword = true;
   loginForm: FormGroup;
-
+  isLoginBtnClicked = false;
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
@@ -27,6 +27,7 @@ export class LoginComponent {
   }
 
   login() {
+    this.isLoginBtnClicked = true;
     if (this.attempts < 4) {
       if(this.loginForm.valid) {
       this.attempts++;

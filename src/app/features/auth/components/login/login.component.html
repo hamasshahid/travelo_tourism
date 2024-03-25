@@ -13,8 +13,8 @@
                                 <div class="form-group">
                                     <input type="email" class="form-control login-page-btn" placeholder="Email"
                                         formControlName="email"
-                                        [class.invalid-input]="getLoginControl('email')?.invalid && getLoginControl('email')?.touched">
-                                    <div *ngIf="getLoginControl('email')?.invalid && getLoginControl('email')?.touched"
+                                        [class.invalid-input]="(getLoginControl('email')?.invalid && getLoginControl('email')?.touched) || isLoginBtnClicked">
+                                    <div *ngIf="(getLoginControl('email')?.invalid && getLoginControl('email')?.touched) || isLoginBtnClicked"
                                         class="text-danger ms-2">
                                         <span *ngIf="getLoginControl('email')?.errors?.['required']">
                                             Email is Required
@@ -28,12 +28,12 @@
                                 <div class="form-group">
                                     <input id="password-field" [type]="hidePassword ? 'password' : 'text'"
                                         class="form-control login-page-btn" placeholder="Password"
-                                        formControlName="pass">
+                                        formControlName="pass" [class.invalid-input]="(getLoginControl('pass')?.invalid && getLoginControl('pass')?.touched) || isLoginBtnClicked">
                                     <span class="fa fa-fw field-icon"
                                         [ngClass]="hidePassword ? 'fa-eye-slash' : 'fa-eye' "
                                         (click)="hidePassword = !hidePassword"
                                         style="color:rgb(3, 3, 3); cursor: pointer;"></span>
-                                    <div *ngIf="getLoginControl('pass')?.invalid && getLoginControl('pass')?.touched"
+                                    <div *ngIf="(getLoginControl('pass')?.invalid && getLoginControl('pass')?.touched) || isLoginBtnClicked"
                                         class="text-danger ms-2">
                                         <span *ngIf="getLoginControl('pass')?.errors?.['required']">
                                             Password is Required
